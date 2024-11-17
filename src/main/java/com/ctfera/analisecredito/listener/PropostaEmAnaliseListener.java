@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class PropostaEmAnaliseListener {
 
-    @RabbitListener(queues = "${proposta-pendente.ms-analise-credito}")
+    @RabbitListener(queues = "${rabbitmq.queue.proposta.pendente}")
     public void propostaEmAnalise(Proposta proposta){
 
     }
