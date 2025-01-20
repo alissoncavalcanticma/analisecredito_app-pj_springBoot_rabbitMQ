@@ -1,6 +1,8 @@
 package com.ctfera.analisecredito.service.strategy.impl;
 
+import com.ctfera.analisecredito.constantes.MensagemConstante;
 import com.ctfera.analisecredito.domain.Proposta;
+import com.ctfera.analisecredito.exceptions.StrategyException;
 import com.ctfera.analisecredito.service.strategy.CalculoPonto;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -15,8 +17,8 @@ public class PontuacaoScoreImpl implements CalculoPonto {
     public int calcular(Proposta proposta) {
         int score = score();
 
-        if(score <= 200){
-            throw new RuntimeException("Score baixo!");
+        if(score < 200){
+            throw new StrategyException(String.format(MensagemConstante.PONTUACAO_SERASA_BAIXA, proposta.getUsuario().getNome()));
         } else if(score <= 400){
             return 150;
         } else if(score <= 600){
