@@ -20,7 +20,7 @@ public class AnaliseCreditoService {
     @Autowired
     private NotificacaoRabbitService notificacaoRabbitService;
 
-    @Value("${rabbitmq.exchange.proposta.concluida}")
+    @Value("proposta-concluida.ex")
     private String exchangePropostaConcluida;
 
 //    public AnaliseCreditoService(List<CalculoPonto> calculoPontoList){
@@ -29,9 +29,10 @@ public class AnaliseCreditoService {
 
     public void analisar(Proposta proposta){
       try{
-          boolean aprovada = calculoPontoList.stream()
-                  .mapToInt(impl -> impl.calcular(proposta)).sum() > 350;
-          proposta.setAprovada(aprovada);
+          int pontos = calculoPontoList.stream()
+                  .mapToInt(impl -> impl.calcular(proposta)).sum();
+          //Será true ou false, de acordo com resultado da proposição lógica abaixo.
+          proposta.setAprovada(pontos > 350);
       }catch(StrategyException e){
           proposta.setAprovada(false);
           proposta.setObservacao(e.getMessage());

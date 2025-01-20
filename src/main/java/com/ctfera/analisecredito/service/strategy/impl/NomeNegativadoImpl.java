@@ -1,5 +1,6 @@
 package com.ctfera.analisecredito.service.strategy.impl;
 
+import com.ctfera.analisecredito.constantes.MensagemConstante;
 import com.ctfera.analisecredito.domain.Proposta;
 import com.ctfera.analisecredito.exceptions.StrategyException;
 import com.ctfera.analisecredito.service.strategy.CalculoPonto;
@@ -11,12 +12,12 @@ import java.util.Random;
 //Annotation para ordenar instanciação pelo spring
 @Order(1)
 @Component
-public class NomeNegativoImpl implements CalculoPonto {
+public class NomeNegativadoImpl implements CalculoPonto {
 
     @Override
     public int calcular(Proposta proposta) {
        if(nomeNegativado()){
-           throw new StrategyException("Nome negativado");
+           throw new StrategyException(String.format(MensagemConstante.CLIENTE_NEGATIVADO, proposta.getUsuario().getNome()));
        }
         return 100;
     }

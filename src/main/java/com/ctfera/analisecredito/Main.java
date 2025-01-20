@@ -22,7 +22,7 @@ public class Main {
 	@Bean
 	public CommandLineRunner commandLineRunner(){
 		return args -> {
-			analiseCreditoService.analisar();
+			//analiseCreditoService.analisar();
 		};
 	}
 
