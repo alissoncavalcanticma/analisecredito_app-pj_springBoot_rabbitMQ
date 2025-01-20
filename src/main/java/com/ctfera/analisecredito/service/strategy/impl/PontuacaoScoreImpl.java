@@ -2,9 +2,11 @@ package com.ctfera.analisecredito.service.strategy.impl;
 
 import com.ctfera.analisecredito.domain.Proposta;
 import com.ctfera.analisecredito.service.strategy.CalculoPonto;
+import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
+@Component
 public class PontuacaoScoreImpl implements CalculoPonto {
     @Override
     public int calcular(Proposta proposta) {
