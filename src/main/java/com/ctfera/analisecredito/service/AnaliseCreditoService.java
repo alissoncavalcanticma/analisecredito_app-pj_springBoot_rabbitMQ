@@ -20,7 +20,7 @@ public class AnaliseCreditoService {
     @Autowired
     private NotificacaoRabbitService notificacaoRabbitService;
 
-    @Value("proposta-concluida.ex")
+    @Value("${rabbitmq.exchange.proposta.concluida}")
     private String exchangePropostaConcluida;
 
 //    public AnaliseCreditoService(List<CalculoPonto> calculoPontoList){
