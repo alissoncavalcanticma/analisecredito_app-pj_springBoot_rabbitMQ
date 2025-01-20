@@ -18,6 +18,7 @@ public class PontuacaoScoreImpl implements CalculoPonto {
             return 180;
         } else{
             return 220;
+
         }
     }
 
