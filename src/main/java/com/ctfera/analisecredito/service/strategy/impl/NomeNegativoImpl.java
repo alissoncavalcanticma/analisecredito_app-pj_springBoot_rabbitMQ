@@ -1,6 +1,7 @@
 package com.ctfera.analisecredito.service.strategy.impl;
 
 import com.ctfera.analisecredito.domain.Proposta;
+import com.ctfera.analisecredito.exceptions.StrategyException;
 import com.ctfera.analisecredito.service.strategy.CalculoPonto;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,7 @@ public class NomeNegativoImpl implements CalculoPonto {
     @Override
     public int calcular(Proposta proposta) {
        if(nomeNegativado()){
-           throw new RuntimeException("Nome negativado");
+           throw new StrategyException("Nome negativado");
        }
         return 100;
     }
