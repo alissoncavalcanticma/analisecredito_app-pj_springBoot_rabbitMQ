@@ -4,6 +4,7 @@ import com.ctfera.analisecredito.domain.Proposta;
 import com.ctfera.analisecredito.exceptions.StrategyException;
 import com.ctfera.analisecredito.service.strategy.CalculoPonto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,12 @@ public class AnaliseCreditoService {
     @Autowired
     private List<CalculoPonto> calculoPontoList;
 
+    @Autowired
+    private NotificacaoRabbitService notificacaoRabbitService;
+
+    @Value("${rabbitmq.exchange.proposta.concluida}")
+    private String exchangePropostaConcluida;
+
 //    public AnaliseCreditoService(List<CalculoPonto> calculoPontoList){
 //        this.calculoPontoList = calculoPontoList;
 //    }
@@ -27,6 +34,8 @@ public class AnaliseCreditoService {
           proposta.setAprovada(aprovada);
       }catch(StrategyException e){
           proposta.setAprovada(false);
+          proposta.setObservacao(e.getMessage());
       }
+      notificacaoRabbitService.notificar(exchangePropostaConcluida, proposta);
     }
 }
