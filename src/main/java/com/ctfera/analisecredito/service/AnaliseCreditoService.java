@@ -1,6 +1,8 @@
-package com.ctfera.analisecredito.service.strategy;
+package com.ctfera.analisecredito.service;
 
 import com.ctfera.analisecredito.domain.Proposta;
+import com.ctfera.analisecredito.exceptions.StrategyException;
+import com.ctfera.analisecredito.service.strategy.CalculoPonto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +24,9 @@ public class AnaliseCreditoService {
       try{
           boolean aprovada = calculoPontoList.stream()
                   .mapToInt(impl -> impl.calcular(proposta)).sum() > 350;
-      }catch(RuntimeException e){
-
+          proposta.setAprovada(aprovada);
+      }catch(StrategyException e){
+          proposta.setAprovada(false);
       }
     }
 }

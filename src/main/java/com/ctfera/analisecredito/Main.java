@@ -1,7 +1,6 @@
 package com.ctfera.analisecredito;
 
-import com.ctfera.analisecredito.domain.Proposta;
-import com.ctfera.analisecredito.service.strategy.AnaliseCreditoService;
+import com.ctfera.analisecredito.service.AnaliseCreditoService;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
