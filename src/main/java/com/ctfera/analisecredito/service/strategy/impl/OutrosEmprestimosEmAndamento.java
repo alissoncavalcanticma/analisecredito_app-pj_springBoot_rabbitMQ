@@ -5,17 +5,14 @@ import com.ctfera.analisecredito.service.strategy.CalculoPonto;
 
 import java.util.Random;
 
-public class NomeNegativoImpl implements CalculoPonto {
+public class OutrosEmprestimosEmAndamento implements CalculoPonto {
 
     @Override
-    public int calcular(Proposta proposta) {
-       if(nomeNegativado()){
-           throw new RuntimeException("Nome negativado");
-       }
-        return 100;
+    public int calcular(Proposta proposta){
+        return outrosEmprestimosEmAndamento() ? 0: 80;
     }
 
-    private boolean nomeNegativado(){
+    private boolean outrosEmprestimosEmAndamento(){
         return new Random().nextBoolean();
     }
 }
