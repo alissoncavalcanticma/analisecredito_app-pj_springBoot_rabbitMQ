@@ -2,7 +2,9 @@ package com.ctfera.analisecredito.service.strategy.impl;
 
 import com.ctfera.analisecredito.domain.Proposta;
 import com.ctfera.analisecredito.service.strategy.CalculoPonto;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PrazoPagamentoInferiorDezAnos implements CalculoPonto {
 
     @Override
