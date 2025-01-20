@@ -2,10 +2,13 @@ package com.ctfera.analisecredito.service.strategy.impl;
 
 import com.ctfera.analisecredito.domain.Proposta;
 import com.ctfera.analisecredito.service.strategy.CalculoPonto;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
+//Annotation para ordenar instanciação pelo spring
+@Order(1)
 @Component
 public class NomeNegativoImpl implements CalculoPonto {
 
