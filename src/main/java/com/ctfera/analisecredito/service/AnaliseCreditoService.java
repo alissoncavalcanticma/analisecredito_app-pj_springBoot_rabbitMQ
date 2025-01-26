@@ -28,15 +28,16 @@ public class AnaliseCreditoService {
 //    }
 
     public void analisar(Proposta proposta){
-      try{
-          int pontos = calculoPontoList.stream()
-                  .mapToInt(impl -> impl.calcular(proposta)).sum();
-          //Será true ou false, de acordo com resultado da proposição lógica abaixo.
-          proposta.setAprovada(pontos > 350);
-      }catch(StrategyException e){
-          proposta.setAprovada(false);
-          proposta.setObservacao(e.getMessage());
-      }
-      notificacaoRabbitService.notificar(exchangePropostaConcluida, proposta);
+        //proposta.getObservacao().toLowerCase();
+        try{
+            int pontos = calculoPontoList.stream()
+                    .mapToInt(impl -> impl.calcular(proposta)).sum();
+            //Será true ou false, de acordo com resultado da proposição lógica abaixo.
+            proposta.setAprovada(pontos > 350);
+        }catch(StrategyException e){
+            proposta.setAprovada(false);
+            proposta.setObservacao(e.getMessage());
+        }
+        notificacaoRabbitService.notificar(exchangePropostaConcluida, proposta);
     }
 }
